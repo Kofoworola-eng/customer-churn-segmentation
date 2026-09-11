@@ -11,7 +11,7 @@ business can prioritize retention efforts effectively?
 ## Why This Project
 
 Churn analysis is one of the most valuable and most misunderstood skills in data work. It is 
-not just "run a model and get a number" — it requires understanding customer behavior patterns, 
+not just "run a model and get a number", it requires understanding customer behavior patterns, 
 avoiding common pitfalls like data leakage, and translating a prediction into a decision someone 
 can actually act on.
 
@@ -23,15 +23,15 @@ fixes along the way, not just a polished final result.
 
 **Pipeline:** SQL (extraction) → CSV → Python (cleaning, analysis, modeling)
 
-1. **Data extraction** — SQL queries against AdventureWorks2022, scoped to individual (retail) 
+1. **Data extraction** : SQL queries against AdventureWorks2022, scoped to individual (retail) 
    customers only
-2. **RFM feature engineering** — Recency, Frequency, Monetary calculated per customer, plus 
+2. **RFM feature engineering** : Recency, Frequency, Monetary calculated per customer, plus 
    Average Order Value and Average Purchase Gap
-3. **Customer segmentation** — quintile-based RFM scoring, translated into business-readable 
+3. **Customer segmentation** : quintile-based RFM scoring, translated into business-readable 
    segments (Champions, Loyal Customers, At Risk, Lost, etc.)
-4. **Churn prediction modeling** — Logistic Regression baseline, then Random Forest, with 
+4. **Churn prediction modeling** : Logistic Regression baseline, then Random Forest, with 
    hyperparameter tuning via GridSearchCV
-5. **Feature importance analysis** — identifying which behaviors actually predict churn
+5. **Feature importance analysis** : identifying which behaviors actually predict churn
 
 ## Key Findings
 
@@ -60,9 +60,9 @@ for targeted retention campaigns.
 
 ## Tech Stack
 
-- **SQL** (extraction from AdventureWorks2022)
-- **Python** — pandas, scikit-learn, matplotlib, seaborn
-- **Modeling** — Logistic Regression, Random Forest, GridSearchCV
+- **SQL** : extraction from AdventureWorks2022
+- **Python** : pandas, scikit-learn, matplotlib, seaborn
+- **Modeling** : Logistic Regression, Random Forest, GridSearchCV
 
 ## Project Structure
 customer-churn-segmentation/
