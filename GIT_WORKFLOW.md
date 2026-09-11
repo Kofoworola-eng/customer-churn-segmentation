@@ -95,3 +95,16 @@ saved to dashboard/segment_distribution.png for use in README and future posts.
 
 Chart confirms segment sizes: Loyal Customers (4,655) is the largest group, followed by 
 Needs Attention, Lost, New/Promising, Champions, and At Risk.
+
+## Step 10: Feature Engineering for Churn Prediction
+
+Created notebooks/04_churn_prediction_model.ipynb. Installed scikit-learn (pip install scikit-learn).
+
+One-hot encoded TerritoryName using pd.get_dummies (drop_first=True to avoid redundant columns).
+
+Selected features: Frequency, Monetary, and territory dummy columns.
+
+Important: deliberately excluded Recency, R_Score, F_Score, M_Score from the feature set. 
+Since Churned was derived directly from Recency (>180 days), including Recency-based features 
+would cause data leakage - the model would learn to look up the label rather than find real 
+predictive patterns. This is a common mistake worth avoiding explicitly.
