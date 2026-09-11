@@ -141,3 +141,15 @@ typically beat a fancier algorithm on weak inputs. Planned additions (non-leakin
 - Tenure: days between first order and snapshot date
 - Average Order Value: Monetary / Frequency
 - Purchase gap variability: average days between orders for repeat customers
+
+## Step 13: Engineered Additional Features
+
+Added three new features to 02_rfm_segmentation.ipynb, inserted right after the base RFM 
+calculation:
+- Tenure: days between first order and snapshot date (customer relationship length)
+- AvgOrderValue: Monetary / Frequency (spend per transaction, not total)
+- AvgPurchaseGap: average days between orders for repeat customers (0 for one-time buyers)
+
+Re-ran the full notebook top to bottom so downstream steps (churn label, RFM scoring, 
+segmentation) recalculated correctly on the updated rfm table. Overwrote 
+data/processed/rfm_segmented.csv with the expanded feature set.
