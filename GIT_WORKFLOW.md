@@ -221,3 +221,13 @@ Interpretation: tuning traded some precision and accuracy for a large recall gai
 as the better trade-off for churn prediction specifically, since missing an at-risk customer 
 (false negative) is typically costlier to the business than a false alarm (false positive) - 
 a wasted retention outreach is cheap, a lost customer is not. Selected the tuned model as final.
+
+## Step 17: Save Final Model
+
+Saved the tuned Random Forest model and the StandardScaler to models/ using joblib:
+- models/churn_model_rf.pkl
+- models/scaler.pkl
+
+Saving the scaler alongside the model matters: any future customer data would need to be 
+scaled using the same parameters learned from training data before being passed to the model, 
+not re-fit from scratch.
