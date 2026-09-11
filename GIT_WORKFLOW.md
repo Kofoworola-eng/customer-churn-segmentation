@@ -108,3 +108,15 @@ Important: deliberately excluded Recency, R_Score, F_Score, M_Score from the fea
 Since Churned was derived directly from Recency (>180 days), including Recency-based features 
 would cause data leakage - the model would learn to look up the label rather than find real 
 predictive patterns. This is a common mistake worth avoiding explicitly.
+
+## Step 11: Train/Test Split and Baseline Model
+
+Split data 80/20 (train_test_split, random_state=42, stratify=y to preserve the 54/46 
+churn ratio in both sets). Train: 15,295 rows, Test: 3,824 rows.
+
+First model attempt (Logistic Regression) hit a ConvergenceWarning - caused by Monetary being 
+on a much larger scale than Frequency and the territory dummy columns, which destabilizes the 
+optimization. Fixed by applying StandardScaler to normalize all features to the same scale 
+(mean 0, std 1) before training.
+
+Re-trained Logistic Regression on scaled features - converged cleanly, no warnings.
