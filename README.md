@@ -65,6 +65,8 @@ for targeted retention campaigns.
 - **Modeling** : Logistic Regression, Random Forest, GridSearchCV
 
 ## Project Structure
+
+```
 customer-churn-segmentation/
 ├── sql/                  → extraction queries
 ├── data/
@@ -79,6 +81,7 @@ customer-churn-segmentation/
 ├── dashboard/              → visualization assets
 ├── GIT_WORKFLOW.md         → full step-by-step build log
 └── README.md
+```
 
 ## How to Run
 
