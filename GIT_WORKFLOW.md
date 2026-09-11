@@ -176,3 +176,28 @@ Key finding: Frequency, Monetary, AvgOrderValue, and AvgPurchaseGap alone do not
 predictive signal for churn in this dataset once leakage is properly removed. This is an honest 
 and valuable result - a clean 54% is more useful than a leaked 91%, since the leaked version 
 would fail immediately in a real deployment.
+
+## Step 15: Random Forest Model
+
+Trained RandomForestClassifier (n_estimators=200, random_state=42) on the same leakage-free 
+feature set (Frequency, Monetary, AvgOrderValue, AvgPurchaseGap, territory dummies).
+
+Results vs. Logistic Regression baseline:
+- Accuracy: 65.8% (up from 54.4%)
+- Precision: 62.8% (up from 50.3%)
+- Recall: 62.4% (up from 59.2%)
+- F1 Score: 62.6% (up from 43.7%)
+
+Confirms the earlier weak result was partly an algorithm limitation, not just weak features - 
+Random Forest captures non-linear patterns logistic regression structurally cannot.
+
+Feature importance:
+- AvgOrderValue: 33.3%
+- Monetary: 32.4%
+- AvgPurchaseGap: 24.4%
+- Frequency: 4.8%
+- Territory (combined): ~5%
+
+Key insight: spending pattern (order value, purchase gap consistency) predicts churn far 
+better than raw totals or customer location. Frequency and geography are largely irrelevant 
+to this model.
