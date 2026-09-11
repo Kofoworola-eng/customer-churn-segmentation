@@ -201,3 +201,23 @@ Feature importance:
 Key insight: spending pattern (order value, purchase gap consistency) predicts churn far 
 better than raw totals or customer location. Frequency and geography are largely irrelevant 
 to this model.
+
+## Step 16: Hyperparameter Tuning (GridSearchCV)
+
+Ran GridSearchCV over Random Forest parameters (n_estimators, max_depth, min_samples_leaf, 
+min_samples_split), 5-fold cross-validation, optimizing for F1 score. Tested 108 combinations 
+(540 total fits).
+
+Best parameters: max_depth=10, min_samples_leaf=1, min_samples_split=2, n_estimators=100
+Best cross-validated F1: 65.5%
+
+Trained final tuned model and evaluated on held-out test set:
+- Accuracy: 64.6% (down slightly from untuned 65.8%)
+- Precision: 59.3% (down from 62.8%)
+- Recall: 72.6% (up significantly from 62.4%)
+- F1 Score: 65.3% (up from 62.6%)
+
+Interpretation: tuning traded some precision and accuracy for a large recall gain. Judged this 
+as the better trade-off for churn prediction specifically, since missing an at-risk customer 
+(false negative) is typically costlier to the business than a false alarm (false positive) - 
+a wasted retention outreach is cheap, a lost customer is not. Selected the tuned model as final.
