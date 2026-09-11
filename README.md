@@ -66,20 +66,19 @@ for targeted retention campaigns.
 
 ## Project Structure
 customer-churn-segmentation/
-├── sql/ → extraction queries
+├── sql/                  → extraction queries
 ├── data/
-│ ├── raw/ → raw SQL exports (not tracked in git)
-│ └── processed/ → cleaned/feature-engineered data (not tracked in git)
+│   ├── raw/              → raw SQL exports (not tracked in git)
+│   └── processed/        → cleaned/feature-engineered data (not tracked in git)
 ├── notebooks/
-│ ├── 01_data_loading_exploration.ipynb
-│ ├── 02_rfm_segmentation.ipynb
-│ ├── 03_visualization.ipynb
-│ └── 04_churn_prediction_model.ipynb
-├── models/ → saved trained model + scaler
-├── dashboard/ → visualization assets
-├── GIT_WORKFLOW.md → full step-by-step build log
+│   ├── 01_data_loading_exploration.ipynb
+│   ├── 02_rfm_segmentation.ipynb
+│   ├── 03_visualization.ipynb
+│   └── 04_churn_prediction_model.ipynb
+├── models/                → saved trained model + scaler
+├── dashboard/              → visualization assets
+├── GIT_WORKFLOW.md         → full step-by-step build log
 └── README.md
-
 
 ## How to Run
 
