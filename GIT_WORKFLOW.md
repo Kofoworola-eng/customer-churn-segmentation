@@ -39,3 +39,20 @@ Validation:
 - All other dtypes as expected (int64 for IDs, float64 for TotalDue, object for names/territory)
 
 Clean dataset, no null-handling needed before moving to feature engineering.
+
+## Step 5-6: RFM Feature Engineering & Churn Labeling
+
+Aggregated 31,465 order-level rows down to 19,119 unique customers using groupby('CustomerID').
+
+Calculated RFM features:
+- Recency: days since last order, relative to snapshot date (2014-06-30)
+- Frequency: count of orders per customer
+- Monetary: sum of TotalDue per customer
+
+Distribution notes: median Frequency is 1 order (long tail up to 28), Monetary ranges from 
+$1.52 to $989,184, Recency ranges from 0 to 1,126 days.
+
+Created churn label: Churned = 1 if Recency > 180 days (6-month window), else 0.
+
+Result: 10,354 active (54%) vs 8,765 churned (46%) - a well-balanced split, meaning no class 
+imbalance handling (e.g. SMOTE) needed for the prediction model.
