@@ -153,3 +153,26 @@ calculation:
 Re-ran the full notebook top to bottom so downstream steps (churn label, RFM scoring, 
 segmentation) recalculated correctly on the updated rfm table. Overwrote 
 data/processed/rfm_segmented.csv with the expanded feature set.
+
+## Step 14: Feature Set Expansion and a Critical Data Leakage Discovery
+
+Added Tenure, AvgOrderValue, AvgPurchaseGap to the feature set and re-trained. Accuracy jumped 
+from 55% to 91% - an unrealistically large improvement, treated as a red flag rather than a win.
+
+Investigated and confirmed leakage: for one-time buyers (11,649 of 19,119 customers, ~61% of 
+the base), FirstOrderDate equals LastOrderDate, meaning Tenure was numerically identical to 
+Recency for this entire group. Since Recency directly determined the Churned label, Tenure was 
+indirectly leaking the answer to the model.
+
+Correlation check confirmed it: Tenure/Recency correlation 0.38, with 11,649/11,649 one-time 
+buyers showing Tenure == Recency exactly.
+
+Fix: removed Tenure from the feature set entirely.
+
+Result after fix: Accuracy 54.4%, Precision 50.3%, Recall 59.2%, F1 43.7% - back in line with 
+the original baseline.
+
+Key finding: Frequency, Monetary, AvgOrderValue, and AvgPurchaseGap alone do not carry strong 
+predictive signal for churn in this dataset once leakage is properly removed. This is an honest 
+and valuable result - a clean 54% is more useful than a leaked 91%, since the leaked version 
+would fail immediately in a real deployment.
