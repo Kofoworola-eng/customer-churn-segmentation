@@ -231,3 +231,21 @@ Saved the tuned Random Forest model and the StandardScaler to models/ using jobl
 Saving the scaler alongside the model matters: any future customer data would need to be 
 scaled using the same parameters learned from training data before being passed to the model, 
 not re-fit from scratch.
+
+## Step 18: Project README
+
+Created the full README.md covering the business question, approach, key findings (including 
+the data leakage discovery), business recommendations, tech stack, project structure, and 
+instructions to run the project. Written for a dual audience: recruiters evaluating the work, 
+and early-career analysts learning from the process.
+
+## Step 19: Notebook Documentation
+
+Added markdown cells throughout all four notebooks (01-04), explaining the purpose and 
+reasoning behind each code cell in plain language - not just what the code does, but why each 
+decision was made (e.g. why Recency was excluded from model features, why Tenure was removed 
+after the leakage discovery, why recall was prioritized over precision).
+
+This makes each notebook self-explanatory on GitHub without requiring cross-reference to 
+GIT_WORKFLOW.md, and directly supports the project's goal of being a learning resource for 
+early-career analysts.
