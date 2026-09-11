@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project data (large exports - not tracked)
+data/raw/*.csv
+data/processed/*.csv
+
+# Keep folder structure visible in GitHub
+!data/raw/.gitkeep
+!data/processed/.gitkeep
