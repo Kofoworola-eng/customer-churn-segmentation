@@ -9,3 +9,18 @@
 6. Note: GitHub auto-corrected a username casing mismatch (kofoworola-eng vs Kofoworola-eng) 
    on push — updated remote URL to match: 
    `git remote set-url origin https://github.com/Kofoworola-eng/customer-churn-segmentation.git`
+
+   ## Step 2-3: SQL Extraction & Export
+
+Wrote extraction query against AdventureWorks2022, joining Sales.Customer to Person.Person 
+(filters to individual/retail customers only, since PersonID is null for reseller accounts) 
+and Sales.SalesOrderHeader (order history), with Sales.SalesTerritory for regional segmentation.
+
+Query pulled 31,465 rows: CustomerID, FirstName, LastName, SalesOrderID, OrderDate, TotalDue, TerritoryName.
+
+Exported via SSMS "Save Results As" to data/raw/customer_orders_raw.csv
+
+Gotcha: first export had no header row, and manually typing headers into the CSV corrupted 
+the OrderDate column formatting. Fix: enabled "Include column headers when copying or saving 
+results" in SSMS (Tools > Options > Query Results > SQL Server > Results to Grid) and 
+re-exported cleanly instead of editing the file by hand.
