@@ -120,3 +120,24 @@ optimization. Fixed by applying StandardScaler to normalize all features to the 
 (mean 0, std 1) before training.
 
 Re-trained Logistic Regression on scaled features - converged cleanly, no warnings.
+
+## Step 12: Baseline Model Evaluation
+
+Evaluated Logistic Regression baseline on test set:
+- Accuracy: 55.0%
+- Precision: 50.7%
+- Recall: 67.8%
+- F1 Score: 58.0%
+
+Confusion matrix: [[916, 1155], [564, 1189]]
+
+Honest assessment: baseline barely beats the naive "predict majority class" benchmark (~54%, 
+matching the churn split). Likely cause: Frequency and Monetary alone are historical totals, 
+not strong predictors of *future* churn behavior. Deliberately excluding Recency avoided data 
+leakage, but also removed most of the available signal.
+
+Decision: improve the feature set before trying a more complex model, since better features 
+typically beat a fancier algorithm on weak inputs. Planned additions (non-leaking):
+- Tenure: days between first order and snapshot date
+- Average Order Value: Monetary / Frequency
+- Purchase gap variability: average days between orders for repeat customers
