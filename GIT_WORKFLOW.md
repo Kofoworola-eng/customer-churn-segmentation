@@ -56,3 +56,42 @@ Created churn label: Churned = 1 if Recency > 180 days (6-month window), else 0.
 
 Result: 10,354 active (54%) vs 8,765 churned (46%) - a well-balanced split, meaning no class 
 imbalance handling (e.g. SMOTE) needed for the prediction model.
+
+## Step 7-8: RFM Scoring & Segmentation
+
+Converted Recency, Frequency, Monetary into 1-5 quintile scores using pd.qcut (R_Score reversed 
+since low Recency is good; F_Score uses rank(method='first') to handle heavy value ties from 
+the low median order count).
+
+Combined scores into a business-readable Segment label via a rule-based function:
+Champions, Loyal Customers, New/Promising, At Risk, Lost, Needs Attention.
+
+Segment distribution:
+- Loyal Customers: 4,655
+- Needs Attention: 3,542
+- Lost: 3,263
+- New/Promising: 2,838
+- Champions: 2,454
+- At Risk: 2,367
+
+Insight: At Risk + Lost = 5,630 customers (~29% of base), representing the priority group 
+for retention efforts.
+
+## Notebook Reorganization
+
+Split the growing single notebook into purpose-specific notebooks for readability:
+- 01_data_loading_exploration.ipynb - loading + initial validation only
+- 02_rfm_segmentation.ipynb - RFM calculation, scoring, segmentation logic; saves output 
+  to data/processed/rfm_segmented.csv
+- 03_visualization.ipynb - loads processed data, builds charts (kept separate from analysis 
+  to model a clean separation of concerns)
+
+## Step 9: Segment Distribution Visualization
+
+Installed matplotlib and seaborn (pip install matplotlib seaborn).
+
+Built a bar chart of customer counts by RFM segment, ordered largest to smallest, 
+saved to dashboard/segment_distribution.png for use in README and future posts.
+
+Chart confirms segment sizes: Loyal Customers (4,655) is the largest group, followed by 
+Needs Attention, Lost, New/Promising, Champions, and At Risk.
