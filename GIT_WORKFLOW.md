@@ -10,7 +10,7 @@
    on push — updated remote URL to match: 
    `git remote set-url origin https://github.com/Kofoworola-eng/customer-churn-segmentation.git`
 
-   ## Step 2-3: SQL Extraction & Export
+## Step 2-3: SQL Extraction & Export
 
 Wrote extraction query against AdventureWorks2022, joining Sales.Customer to Person.Person 
 (filters to individual/retail customers only, since PersonID is null for reseller accounts) 
